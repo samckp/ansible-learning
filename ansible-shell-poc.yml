@@ -1,0 +1,21 @@
+---
+
+- name: "Get date, timezone from linux server"
+  gather_facts: false
+  hosts: localhost
+  tasks:
+    - name: Get Date
+      ansible.builtin.shell: date
+      register: date
+
+    - name: Get timezone
+      ansible.builtin.shell: cat /etc/timezone
+      register: timezone
+
+    - name: print date
+      ansible.builtin.debug:
+        msg: "{{ date.stdout }}"
+
+    - name: print timezone
+      ansible.builtin.debug:
+        msg: "{{ timezone.stdout }}"
